@@ -23,6 +23,7 @@ body{
     width:320px;
     text-align:center;
     color:white;
+    box-shadow:0 0 25px rgba(0,0,0,.4);
 }
 
 input{
@@ -45,16 +46,29 @@ button{
     font-weight:bold;
 }
 
+button:hover{
+    opacity:.9;
+}
+
 #msg{
     margin-top:15px;
     color:#ff6b6b;
     font-weight:bold;
+}
+
+#foto{
+    display:none;
+    width:220px;
+    margin-top:15px;
+    border-radius:15px;
+    border:3px solid white;
 }
 </style>
 </head>
 <body>
 
 <div class="login">
+
     <h2>Login Seguro 🔒</h2>
 
     <input type="text" id="user" placeholder="Usuário">
@@ -63,6 +77,13 @@ button{
     <button onclick="entrar()">Entrar</button>
 
     <div id="msg"></div>
+
+    <img
+        id="foto"
+        src="https://i.imgur.com/QJDn6fS.jpeg"
+        alt="Jairfemboy666"
+    >
+
 </div>
 
 <script>
@@ -71,7 +92,11 @@ function entrar(){
     const senha = document.getElementById("pass").value;
 
     document.getElementById("msg").innerHTML =
-    `❌ A senha "<b>${senha}</b>" já pertence ao usuário <b>Jairfemboy666</b>.`;
+    `🚨 ALERTA DE SEGURANÇA 🚨<br><br>
+    A senha "<b>${senha}</b>" já pertence ao usuário
+    <b>Jairfemboy666</b>.`;
+
+    document.getElementById("foto").style.display = "block";
 }
 </script>
 
