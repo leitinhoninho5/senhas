@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Seguro</title>
+
+<style>
+body{
+    background:#0f172a;
+    font-family:Arial, sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+.login{
+    background:#1e293b;
+    padding:30px;
+    border-radius:15px;
+    width:320px;
+    text-align:center;
+    color:white;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#3b82f6;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+#msg{
+    margin-top:15px;
+    color:#ff6b6b;
+    font-weight:bold;
+}
+</style>
+</head>
+<body>
+
+<div class="login">
+    <h2>Login Seguro 🔒</h2>
+
+    <input type="text" id="user" placeholder="Usuário">
+    <input type="password" id="pass" placeholder="Senha">
+
+    <button onclick="entrar()">Entrar</button>
+
+    <div id="msg"></div>
+</div>
+
+<script>
+function entrar(){
+
+    const senha = document.getElementById("pass").value;
+
+    document.getElementById("msg").innerHTML =
+    `❌ A senha "<b>${senha}</b>" já pertence ao usuário <b>Jairfemboy666</b>.`;
+}
+</script>
+
+</body>
+</html>
