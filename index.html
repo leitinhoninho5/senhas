@@ -1,104 +1,170 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login Seguro</title>
-
-<style>
-body{
-    background:#0f172a;
-    font-family:Arial, sans-serif;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+<title>Para Aylla ❤️</title><style>
+*{
     margin:0;
-}
-
-.login{
-    background:#1e293b;
-    padding:30px;
-    border-radius:15px;
-    width:320px;
-    text-align:center;
-    color:white;
-    box-shadow:0 0 25px rgba(0,0,0,.4);
-}
-
-input{
-    width:100%;
-    padding:12px;
-    margin:8px 0;
-    border:none;
-    border-radius:8px;
+    padding:0;
     box-sizing:border-box;
 }
 
-button{
-    width:100%;
-    padding:12px;
-    background:#3b82f6;
+body{
+    font-family:Arial,sans-serif;
+    background:linear-gradient(135deg,#ff4d88,#ff7eb3,#ffb6c1);
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    text-align:center;
     color:white;
+    width:90%;
+    max-width:800px;
+}
+
+h1{
+    font-size:3rem;
+    margin-bottom:20px;
+    text-shadow:0 0 20px rgba(255,255,255,.5);
+}
+
+button{
+    padding:15px 35px;
+    font-size:20px;
     border:none;
-    border-radius:8px;
+    border-radius:50px;
     cursor:pointer;
+    background:white;
+    color:#ff4d88;
     font-weight:bold;
+    box-shadow:0 0 20px rgba(255,255,255,.5);
 }
 
 button:hover{
-    opacity:.9;
+    transform:scale(1.05);
 }
 
-#msg{
-    margin-top:15px;
-    color:#ff6b6b;
-    font-weight:bold;
-}
-
-#foto{
+#mensagem{
+    margin-top:30px;
+    font-size:22px;
+    line-height:1.8;
     display:none;
-    width:220px;
-    margin-top:15px;
-    border-radius:15px;
-    border:3px solid white;
+    background:rgba(255,255,255,.15);
+    padding:25px;
+    border-radius:20px;
+    backdrop-filter:blur(8px);
 }
-</style>
-</head>
-<body>
 
-<div class="login">
-
-    <h2>Login Seguro 🔒</h2>
-
-    <input type="text" id="user" placeholder="Usuário">
-    <input type="password" id="pass" placeholder="Senha">
-
-    <button onclick="entrar()">Entrar</button>
-
-    <div id="msg"></div>
-
-    <img
-        id="foto"
-        src="https://i.imgur.com/QJDn6fS.jpeg"
-        alt="Jairfemboy666"
-    >
-
-</div>
-
-<script>
-function entrar(){
-
-    const senha = document.getElementById("pass").value;
-
-    document.getElementById("msg").innerHTML =
-    `🚨 ALERTA DE SEGURANÇA 🚨<br><br>
-    A senha "<b>${senha}</b>" já pertence ao usuário
-    <b>Jairfemboy666</b>.`;
-
-    document.getElementById("foto").style.display = "block";
+.heart{
+    position:absolute;
+    color:white;
+    animation:subir linear infinite;
 }
-</script>
 
-</body>
+@keyframes subir{
+    from{
+        transform:translateY(100vh);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-100px);
+        opacity:0;
+    }
+}
+</style></head><body><div class="container"><h1>Para Aylla ❤️</h1><button onclick="abrirCarta()">
+💌 Clique aqui
+</button><div id="mensagem"></div></div><div id="player"></div><script>
+
+const texto = `
+
+Feliz 3 meses de namoro, minha linda. ❤️
+
+Primeiramente eu quero te agradecer por tudo, minha bebêzona. Obrigado por ser tão especial pra mim e fazer todos os meus dias felizes.
+
+Eu sempre lembro de cada momento com você. Aí na frente da sua casa, na rua, assistindo, conversando, rindo... qualquer momento com você se torna especial e sempre vai estar guardado no meu coração.
+
+Mesmo com desentendimentos ou coisas bestas que acontecem 🙄, eu prometo sempre amar você independente de tudo.
+
+Você faz meus dias felizes, me salva todos os dias, me faz querer ser uma pessoa melhor.
+
+Quando eu olho pro seu sorriso, seu jeitinho, seus olhos, sua risada, tudo tudo tudo mesmo me deixa cada vez mais apaixonado por você meu amor.
+
+EU TE AMOOOOOO 🩷🌹
+
+Com amor,
+
+Vandson ❤️
+
+`;
+
+let index = 0;
+
+function abrirCarta(){
+
+document.querySelector("button").style.display="none";
+
+document.getElementById("mensagem").style.display="block";
+
+digitar();
+
+player.playVideo();
+
+}
+
+function digitar(){
+
+if(index < texto.length){
+
+document.getElementById("mensagem").innerHTML += texto.charAt(index);
+
+index++;
+
+setTimeout(digitar,35);
+
+}
+
+}
+
+for(let i=0;i<40;i++){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(Math.random()*20+15)+"px";
+
+heart.style.animationDuration=(Math.random()*8+5)+"s";
+
+document.body.appendChild(heart);
+
+}
+
+var tag=document.createElement('script');
+tag.src="https://www.youtube.com/iframe_api";
+document.body.appendChild(tag);
+
+var player;
+
+function onYouTubeIframeAPIReady(){
+
+player=new YT.Player('player',{
+height:'0',
+width:'0',
+videoId:'kPa7bsKwL-c',
+playerVars:{
+autoplay:0,
+controls:0
+}
+});
+
+}
+</script></body>
 </html>
