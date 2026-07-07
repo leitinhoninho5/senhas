@@ -1,170 +1,377 @@
 <!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para Aylla ❤️</title><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CYBER TERMINAL X-01</title><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"><style>
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Share Tech Mono',monospace;
 }
 
 body{
-    font-family:Arial,sans-serif;
-    background:linear-gradient(135deg,#ff4d88,#ff7eb3,#ffb6c1);
-    min-height:100vh;
-    overflow:hidden;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+
+background:#000;
+color:#00ff99;
+overflow:hidden;
+
 }
 
-.container{
-    text-align:center;
-    color:white;
-    width:90%;
-    max-width:800px;
+canvas{
+
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-2;
+
+}
+
+#boot{
+
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+
 }
 
 h1{
-    font-size:3rem;
-    margin-bottom:20px;
-    text-shadow:0 0 20px rgba(255,255,255,.5);
+
+font-size:60px;
+letter-spacing:8px;
+text-shadow:0 0 25px #00ff99;
+
+}
+
+h2{
+
+margin-top:15px;
+font-weight:normal;
+opacity:.7;
+
 }
 
 button{
-    padding:15px 35px;
-    font-size:20px;
-    border:none;
-    border-radius:50px;
-    cursor:pointer;
-    background:white;
-    color:#ff4d88;
-    font-weight:bold;
-    box-shadow:0 0 20px rgba(255,255,255,.5);
+
+margin-top:40px;
+padding:18px 50px;
+font-size:22px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+background:#00ff99;
+color:#000;
+font-weight:bold;
+
 }
 
 button:hover{
-    transform:scale(1.05);
-}
 
-#mensagem{
-    margin-top:30px;
-    font-size:22px;
-    line-height:1.8;
-    display:none;
-    background:rgba(255,255,255,.15);
-    padding:25px;
-    border-radius:20px;
-    backdrop-filter:blur(8px);
-}
-
-.heart{
-    position:absolute;
-    color:white;
-    animation:subir linear infinite;
-}
-
-@keyframes subir{
-    from{
-        transform:translateY(100vh);
-        opacity:1;
-    }
-    to{
-        transform:translateY(-100px);
-        opacity:0;
-    }
-}
-</style></head><body><div class="container"><h1>Para Aylla ❤️</h1><button onclick="abrirCarta()">
-💌 Clique aqui
-</button><div id="mensagem"></div></div><div id="player"></div><script>
-
-const texto = `
-
-Feliz 3 meses de namoro, minha linda. ❤️
-
-Primeiramente eu quero te agradecer por tudo, minha bebêzona. Obrigado por ser tão especial pra mim e fazer todos os meus dias felizes.
-
-Eu sempre lembro de cada momento com você. Aí na frente da sua casa, na rua, assistindo, conversando, rindo... qualquer momento com você se torna especial e sempre vai estar guardado no meu coração.
-
-Mesmo com desentendimentos ou coisas bestas que acontecem 🙄, eu prometo sempre amar você independente de tudo.
-
-Você faz meus dias felizes, me salva todos os dias, me faz querer ser uma pessoa melhor.
-
-Quando eu olho pro seu sorriso, seu jeitinho, seus olhos, sua risada, tudo tudo tudo mesmo me deixa cada vez mais apaixonado por você meu amor.
-
-EU TE AMOOOOOO 🩷🌹
-
-Com amor,
-
-Vandson ❤️
-
-`;
-
-let index = 0;
-
-function abrirCarta(){
-
-document.querySelector("button").style.display="none";
-
-document.getElementById("mensagem").style.display="block";
-
-digitar();
-
-player.playVideo();
+box-shadow:0 0 25px #00ff99;
 
 }
 
-function digitar(){
+#terminal{
 
-if(index < texto.length){
+display:none;
 
-document.getElementById("mensagem").innerHTML += texto.charAt(index);
+position:absolute;
 
-index++;
+left:20px;
+top:20px;
 
-setTimeout(digitar,35);
+width:calc(100% - 40px);
+height:calc(100% - 40px);
+
+overflow:auto;
+
+white-space:pre-wrap;
+
+font-size:22px;
+
+}
+
+.cursor{
+
+display:inline-block;
+
+width:12px;
+
+height:24px;
+
+background:#00ff99;
+
+animation:blink .8s infinite;
+
+}
+
+@keyframes blink{
+
+50%{
+
+opacity:0;
 
 }
 
 }
 
-for(let i=0;i<40;i++){
+#status{
 
-let heart=document.createElement("div");
+display:none;
 
-heart.className="heart";
+position:fixed;
 
-heart.innerHTML="❤️";
+right:20px;
 
-heart.style.left=Math.random()*100+"vw";
+top:20px;
 
-heart.style.fontSize=(Math.random()*20+15)+"px";
+width:300px;
 
-heart.style.animationDuration=(Math.random()*8+5)+"s";
+padding:20px;
 
-document.body.appendChild(heart);
+border:2px solid #00ff99;
+
+background:#001a10;
+
+}
+
+#status h3{
+
+margin-bottom:20px;
 
 }
 
-var tag=document.createElement('script');
-tag.src="https://www.youtube.com/iframe_api";
-document.body.appendChild(tag);
+.info{
 
-var player;
-
-function onYouTubeIframeAPIReady(){
-
-player=new YT.Player('player',{
-height:'0',
-width:'0',
-videoId:'kPa7bsKwL-c',
-playerVars:{
-autoplay:0,
-controls:0
-}
-});
+margin:12px 0;
 
 }
-</script></body>
+
+.bar{
+
+height:12px;
+
+background:#033;
+
+margin-top:5px;
+
+}
+
+.fill{
+
+height:100%;
+
+background:#00ff99;
+
+}
+
+#clock{
+
+display:none;
+
+position:fixed;
+
+left:20px;
+
+top:20px;
+
+font-size:22px;
+
+}
+
+</style></head><body><canvas id="matrix"></canvas>
+
+<div id="boot"><h1>CYBER TERMINAL</h1><h2>X-01 SECURITY CONSOLE</h2><button onclick="boot()">INICIAR
+
+</button></div><div id="clock"></div><div id="terminal"></div><div id="status"><h3>SISTEMA</h3><div class="info">CPU
+
+<div class="bar"><div class="fill" style="width:92%"></div></div></div><div class="info">GPU
+
+<div class="bar"><div class="fill" style="width:76%"></div></div></div><div class="info">MEMÓRIA
+
+<div class="bar"><div class="fill" style="width:63%"></div></div></div><div class="info">ENERGIA
+
+<div class="bar"><div class="fill" style="width:100%"></div></div></div></div><script>
+
+const canvas=document.getElementById("matrix");
+
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+
+canvas.height=window.innerHeight;
+
+const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+const fontSize=18;
+
+const columns=Math.floor(canvas.width/fontSize);
+
+const drops=[];
+
+for(let i=0;i<columns;i++) drops[i]=1;
+
+function draw(){
+
+ctx.fillStyle="rgba(0,0,0,.05)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#00ff99";
+ctx.font=fontSize+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const text=letters[Math.floor(Math.random()*letters.length)];
+
+ctx.fillText(text,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>canvas.height && Math.random()>.98){
+
+drops[i]=0;
+
+}
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,35);
+
+<script>
+
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
+
+function resize(){
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+}
+
+resize();
+window.addEventListener("resize",resize);
+
+const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&@";
+const fontSize=18;
+let columns=Math.floor(canvas.width/fontSize);
+let drops=new Array(columns).fill(1);
+
+function draw(){
+
+ctx.fillStyle="rgba(0,0,0,.06)";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="#00ff99";
+ctx.font=fontSize+"px monospace";
+
+for(let i=0;i<drops.length;i++){
+
+const txt=letters[Math.floor(Math.random()*letters.length)];
+
+ctx.fillText(txt,i*fontSize,drops[i]*fontSize);
+
+if(drops[i]*fontSize>canvas.height && Math.random()>0.98){
+drops[i]=0;
+}
+
+drops[i]++;
+
+}
+
+}
+
+setInterval(draw,35);
+
+const terminal=document.getElementById("terminal");
+const bootScreen=document.getElementById("boot");
+const painel=document.getElementById("status");
+const clock=document.getElementById("clock");
+
+const linhas=[
+
+"> Inicializando núcleo...",
+"> Verificando módulos...",
+"> Carregando interface...",
+"> Sincronizando memória...",
+"> Ativando sistema gráfico...",
+"> Conectando rede interna...",
+"> Carregando banco de dados...",
+"> Inicializando IA...",
+"> Sistema online.",
+"",
+"> Bem-vindo ao CYBER TERMINAL X-01"
+
+];
+
+let indice=0;
+
+function escreverLinha(){
+
+if(indice>=linhas.length){
+
+painel.style.display="block";
+clock.style.display="block";
+
+return;
+
+}
+
+let texto=linhas[indice];
+let i=0;
+
+const div=document.createElement("div");
+terminal.appendChild(div);
+
+const timer=setInterval(()=>{
+
+div.textContent=texto.substring(0,i)+"█";
+
+i++;
+
+if(i>texto.length){
+
+clearInterval(timer);
+
+div.textContent=texto;
+
+indice++;
+
+setTimeout(escreverLinha,350);
+
+}
+
+},35);
+
+}
+
+function boot(){
+
+bootScreen.style.display="none";
+
+terminal.style.display="block";
+
+escreverLinha();
+
+}
+
+function atualizarRelogio(){
+
+const agora=new Date();
+
+clock.textContent=
+agora.toLocaleTimeString("pt-BR");
+
+}
+
+setInterval(atualizarRelogio,1000);
+atualizarRelogio();
+
+</script>
+    
+</body>
 </html>
