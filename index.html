@@ -1,377 +1,236 @@
+
 <!DOCTYPE html><html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CYBER TERMINAL X-01</title><link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet"><style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Share Tech Mono',monospace;
-}
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Seguro</title><style>
 body{
-
-background:#000;
-color:#00ff99;
-overflow:hidden;
-
+    background:#0f172a;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+    overflow:hidden;
 }
 
-canvas{
-
-position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-z-index:-2;
-
+.login{
+    background:#1e293b;
+    padding:30px;
+    border-radius:15px;
+    width:320px;
+    text-align:center;
+    color:white;
+    box-shadow:0 0 25px rgba(0,0,0,.4);
+    z-index:10;
 }
 
-#boot{
-
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-text-align:center;
-
-}
-
-h1{
-
-font-size:60px;
-letter-spacing:8px;
-text-shadow:0 0 25px #00ff99;
-
-}
-
-h2{
-
-margin-top:15px;
-font-weight:normal;
-opacity:.7;
-
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border:none;
+    border-radius:8px;
+    box-sizing:border-box;
 }
 
 button{
-
-margin-top:40px;
-padding:18px 50px;
-font-size:22px;
-border:none;
-border-radius:12px;
-cursor:pointer;
-background:#00ff99;
-color:#000;
-font-weight:bold;
-
+    width:100%;
+    padding:12px;
+    background:#3b82f6;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
 button:hover{
-
-box-shadow:0 0 25px #00ff99;
-
+    opacity:.9;
 }
 
-#terminal{
-
-display:none;
-
-position:absolute;
-
-left:20px;
-top:20px;
-
-width:calc(100% - 40px);
-height:calc(100% - 40px);
-
-overflow:auto;
-
-white-space:pre-wrap;
-
-font-size:22px;
-
+#msg{
+    margin-top:15px;
+    font-weight:bold;
+    min-height:60px;
 }
 
-.cursor{
-
-display:inline-block;
-
-width:12px;
-
-height:24px;
-
-background:#00ff99;
-
-animation:blink .8s infinite;
-
+#foto{
+    display:none;
+    width:220px;
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:15px;
+    border:4px solid white;
+    z-index:999;
 }
 
-@keyframes blink{
+.girando{
+    animation:girarTela 8s linear infinite;
+}
+
+@keyframes girarTela{
+
+0%{
+left:10%;
+top:10%;
+transform:rotate(0deg);
+}
+
+25%{
+left:80%;
+top:10%;
+transform:rotate(90deg);
+}
 
 50%{
+left:80%;
+top:75%;
+transform:rotate(180deg);
+}
 
-opacity:0;
+75%{
+left:10%;
+top:75%;
+transform:rotate(270deg);
+}
 
+100%{
+left:10%;
+top:10%;
+transform:rotate(360deg);
 }
 
 }
 
-#status{
+.msgDoida{
+    position:fixed;
+    color:#ff3b3b;
+    font-size:28px;
+    font-weight:bold;
+    text-shadow:0 0 10px white;
+    pointer-events:none;
+    z-index:998;
+}
 
-display:none;
+.piscando{
+    animation:piscar .2s infinite;
+}
 
-position:fixed;
+@keyframes piscar{
+0%{background:#0f172a;}
+50%{background:#4a0000;}
+100%{background:#0f172a;}
+}
+</style></head><body><div class="login"><h2>Login Seguro 🔒</h2>
 
-right:20px;
+<input type="text" id="user" placeholder="Usuário">
+<input type="password" id="pass" placeholder="Senha">
 
-top:20px;
+<button onclick="entrar()">Entrar</button>
 
-width:300px;
+<div id="msg"></div>
 
-padding:20px;
+</div><img
+id="foto"
+src="https://i.imgur.com/QJDn6fS.jpeg"
+alt="Jairfemboy666"
 
-border:2px solid #00ff99;
+«»
 
-background:#001a10;
+<div id="player"></div><script src="https://www.youtube.com/iframe_api"></script><script>
+
+var player;
+
+function onYouTubeIframeAPIReady(){
+
+player = new YT.Player('player',{
+height:'0',
+width:'0',
+videoId:'IRZIMGxxgf8',
+playerVars:{
+autoplay:0,
+controls:0
+}
+});
 
 }
 
-#status h3{
+function entrar(){
 
-margin-bottom:20px;
+const senha = document.getElementById("pass").value;
+const msg = document.getElementById("msg");
 
+msg.style.color = "#ffd166";
+msg.innerHTML = "🔍 Consultando banco de dados...";
+
+setTimeout(() => {
+
+msg.innerHTML = "🔐 Verificando credenciais...";
+
+},1200);
+
+setTimeout(() => {
+
+document.body.classList.add("piscando");
+
+msg.style.color = "#ff6b6b";
+
+msg.innerHTML =
+`🚨 ALERTA DE SEGURANÇA 🚨<br><br>
+A senha "<b>${senha}</b>" já pertence ao usuário
+<b>Jairfemboy666</b>.`;
+
+const foto = document.getElementById("foto");
+foto.style.display = "block";
+foto.classList.add("girando");
+
+if(player){
+player.playVideo();
 }
 
-.info{
-
-margin:12px 0;
-
-}
-
-.bar{
-
-height:12px;
-
-background:#033;
-
-margin-top:5px;
-
-}
-
-.fill{
-
-height:100%;
-
-background:#00ff99;
-
-}
-
-#clock{
-
-display:none;
-
-position:fixed;
-
-left:20px;
-
-top:20px;
-
-font-size:22px;
-
-}
-
-</style></head><body><canvas id="matrix"></canvas>
-
-<div id="boot"><h1>CYBER TERMINAL</h1><h2>X-01 SECURITY CONSOLE</h2><button onclick="boot()">INICIAR
-
-</button></div><div id="clock"></div><div id="terminal"></div><div id="status"><h3>SISTEMA</h3><div class="info">CPU
-
-<div class="bar"><div class="fill" style="width:92%"></div></div></div><div class="info">GPU
-
-<div class="bar"><div class="fill" style="width:76%"></div></div></div><div class="info">MEMÓRIA
-
-<div class="bar"><div class="fill" style="width:63%"></div></div></div><div class="info">ENERGIA
-
-<div class="bar"><div class="fill" style="width:100%"></div></div></div></div><script>
-
-const canvas=document.getElementById("matrix");
-
-const ctx=canvas.getContext("2d");
-
-canvas.width=window.innerWidth;
-
-canvas.height=window.innerHeight;
-
-const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-const fontSize=18;
-
-const columns=Math.floor(canvas.width/fontSize);
-
-const drops=[];
-
-for(let i=0;i<columns;i++) drops[i]=1;
-
-function draw(){
-
-ctx.fillStyle="rgba(0,0,0,.05)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="#00ff99";
-ctx.font=fontSize+"px monospace";
-
-for(let i=0;i<drops.length;i++){
-
-const text=letters[Math.floor(Math.random()*letters.length)];
-
-ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-if(drops[i]*fontSize>canvas.height && Math.random()>.98){
-
-drops[i]=0;
-
-}
-
-drops[i]++;
-
-}
-
-}
-
-setInterval(draw,35);
-
-<script>
-
-const canvas=document.getElementById("matrix");
-const ctx=canvas.getContext("2d");
-
-function resize(){
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-}
-
-resize();
-window.addEventListener("resize",resize);
-
-const letters="ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#$%&@";
-const fontSize=18;
-let columns=Math.floor(canvas.width/fontSize);
-let drops=new Array(columns).fill(1);
-
-function draw(){
-
-ctx.fillStyle="rgba(0,0,0,.06)";
-ctx.fillRect(0,0,canvas.width,canvas.height);
-
-ctx.fillStyle="#00ff99";
-ctx.font=fontSize+"px monospace";
-
-for(let i=0;i<drops.length;i++){
-
-const txt=letters[Math.floor(Math.random()*letters.length)];
-
-ctx.fillText(txt,i*fontSize,drops[i]*fontSize);
-
-if(drops[i]*fontSize>canvas.height && Math.random()>0.98){
-drops[i]=0;
-}
-
-drops[i]++;
-
-}
-
-}
-
-setInterval(draw,35);
-
-const terminal=document.getElementById("terminal");
-const bootScreen=document.getElementById("boot");
-const painel=document.getElementById("status");
-const clock=document.getElementById("clock");
-
-const linhas=[
-
-"> Inicializando núcleo...",
-"> Verificando módulos...",
-"> Carregando interface...",
-"> Sincronizando memória...",
-"> Ativando sistema gráfico...",
-"> Conectando rede interna...",
-"> Carregando banco de dados...",
-"> Inicializando IA...",
-"> Sistema online.",
-"",
-"> Bem-vindo ao CYBER TERMINAL X-01"
-
+const frases = [
+"RIAN CABURÉ DO JORDÃO",
+"⚠️ SENHA COMPROMETIDA ⚠️",
+"JAIRFEMBOY666 DETECTADO",
+"HACKER ENCONTRADO",
+"ESSA SENHA É DO JAIR",
+"ACESSO NEGADO",
+"BANCO DE DADOS CORROMPIDO",
+"ALERTA MÁXIMO",
+"VOCÊ FOI PEGO",
+"RISCO CRÍTICO"
 ];
 
-let indice=0;
+setInterval(() => {
 
-function escreverLinha(){
+const aviso = document.createElement("div");
 
-if(indice>=linhas.length){
+aviso.className = "msgDoida";
 
-painel.style.display="block";
-clock.style.display="block";
+aviso.innerText =
+frases[Math.floor(Math.random()*frases.length)];
 
-return;
+aviso.style.left =
+Math.random()*90 + "vw";
 
-}
+aviso.style.top =
+Math.random()*90 + "vh";
 
-let texto=linhas[indice];
-let i=0;
+document.body.appendChild(aviso);
 
-const div=document.createElement("div");
-terminal.appendChild(div);
+setTimeout(() => {
+aviso.remove();
+},4000);
 
-const timer=setInterval(()=>{
+},500);
 
-div.textContent=texto.substring(0,i)+"█";
-
-i++;
-
-if(i>texto.length){
-
-clearInterval(timer);
-
-div.textContent=texto;
-
-indice++;
-
-setTimeout(escreverLinha,350);
+},2500);
 
 }
 
-},35);
-
-}
-
-function boot(){
-
-bootScreen.style.display="none";
-
-terminal.style.display="block";
-
-escreverLinha();
-
-}
-
-function atualizarRelogio(){
-
-const agora=new Date();
-
-clock.textContent=
-agora.toLocaleTimeString("pt-BR");
-
-}
-
-setInterval(atualizarRelogio,1000);
-atualizarRelogio();
-
-</script>
-    
-</body>
+</script></body>
 </html>
