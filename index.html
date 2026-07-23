@@ -685,3 +685,159 @@
 }
 
 .install-m
+    </style>
+    <script>
+      // Loading screen
+        window.addEventListener(&#39;load&#39;, function() {
+            const loadingScreen = document.getElementById(&#39;loadingScreen&#39;);
+            setTimeout(() =&gt; {
+                loadingScreen.classList.add(&#39;hidden&#39;);
+            }, 1000);
+        });
+
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: &#39;0px 0px -50px 0px&#39;
+        };
+
+        const observer = new IntersectionObserver((entries) =&gt; {
+            entries.forEach(entry =&gt; {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(&#39;animate-fade-in-up&#39;);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+            const elementsToAnimate = document.querySelectorAll(&#39;.step-item, .game-category, .prize-item&#39;);
+            elementsToAnimate.forEach(el =&gt; {
+                observer.observe(el);
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener(&#39;scroll&#39;, () =&gt; {
+            const scrolled = window.pageYOffset;
+            const heroElements = document.querySelectorAll(&#39;.parallax-element&#39;);
+            
+            heroElements.forEach(element =&gt; {
+                const speed = element.dataset.speed || 0.5;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add floating animation to certain elements
+        document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+            const floatingElements = document.querySelectorAll(&#39;.hero-visuals .gaming-item&#39;);
+            floatingElements.forEach((el, index) =&gt; {
+                el.style.animationDelay = `${index * 0.5}s`;
+                el.classList.add(&#39;floating&#39;);
+            });
+        });
+
+        // Notiflix configuration
+        Notiflix.Notify.init({
+            width: &#39;300px&#39;,
+            position: &#39;right-top&#39;,
+            distance: &#39;20px&#39;,
+            opacity: 1,
+            borderRadius: &#39;12px&#39;,
+            rtl: false,
+            timeout: 4000,
+            messageMaxLength: 110,
+            backOverlay: false,
+            backOverlayColor: &#39;rgba(0,0,0,0.5)&#39;,
+            plainText: true,
+            showOnlyTheLastOne: false,
+            clickToClose: true,
+            pauseOnHover: true,
+            ID: &#39;NotiflixNotify&#39;,
+            className: &#39;notiflix-notify&#39;,
+            zindex: 4001,
+            fontFamily: &#39;Inter&#39;,
+            fontSize: &#39;14px&#39;,
+            cssAnimation: true,
+            cssAnimationDuration: 400,
+            cssAnimationStyle: &#39;zoom&#39;,
+            closeButton: false,
+            useIcon: true,
+            useFontAwesome: false,
+            fontAwesomeIconStyle: &#39;basic&#39;,
+            fontAwesomeIconSize: &#39;16px&#39;,
+            success: {
+                background: &#39;#22c55e&#39;,
+                textColor: &#39;#fff&#39;,
+                childClassName: &#39;notiflix-notify-success&#39;,
+                notiflixIconColor: &#39;rgba(0,0,0,0.2)&#39;,
+                fontAwesomeClassName: &#39;fas fa-check-circle&#39;,
+                fontAwesomeIconColor: &#39;rgba(0,0,0,0.2)&#39;,
+                backOverlayColor: &#39;rgba(34,197,94,0.2)&#39;,
+            }
+        });
+
+        // Dynamic copyright year
+        document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+            const currentYear = new Date().getFullYear();
+            const copyrightElements = document.querySelectorAll(&#39;.footer-description&#39;);
+            if (copyrightElements.length &gt; 0) {
+                copyrightElements[0].innerHTML = copyrightElements[0].innerHTML.replace(&#39;2025&#39;, currentYear);
+            }
+        });
+
+        // Add glow effect to interactive elements
+        document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+            const glowElements = document.querySelectorAll(&#39;.btn-register, .hero-cta, .game-btn&#39;);
+            glowElements.forEach(el =&gt; {
+                el.classList.add(&#39;glow&#39;);
+            });
+        });
+
+        // Mobile menu toggle (if needed)
+        function toggleMobileMenu() {
+            const mobileMenu = document.querySelector(&#39;.mobile-menu&#39;);
+            if (mobileMenu) {
+                mobileMenu.classList.toggle(&#39;active&#39;);
+            }
+        }
+
+        // Console welcome message
+        console.log(&#39;%c🎯 RaspaGreen - Bem-vindo!&#39;, &#39;color: #22c55e; font-size: 16px; font-weight: bold;&#39;);
+        console.log(&#39;%cSistema carregado com sucesso!&#39;, &#39;color: #16a34a; font-size: 12px;&#39;);
+    </script>
+    <!-- Performance and Analytics -->
+    <script>
+      // Performance monitoring
+        window.addEventListener(&#39;load&#39;, function() {
+            if (&#39;performance&#39; in window) {
+                const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+                console.log(`Página carregada em ${loadTime}ms`);
+            }
+        });
+
+        // Error handling
+        window.addEventListener(&#39;error&#39;, function(e) {
+            console.error(&#39;Erro na página:&#39;, e.error);
+        });
+
+        // Lazy loading for images when implemented
+        if (&#39;IntersectionObserver&#39; in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) =&gt; {
+                entries.forEach(entry =&gt; {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove(&#39;lazy&#39;);
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll(&#39;img[data-src]&#39;).forEach(img =&gt; {
+                imageObserver.observe(img);
+            });
+        }
+    </script>
+  </body>
+</html>
